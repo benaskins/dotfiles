@@ -1,2 +1,2 @@
 alias gs="git status"
-alias gd="git diff | mvim -"
+alias gd="git diff | gitx"
