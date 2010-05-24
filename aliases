@@ -1,2 +1,4 @@
 alias gs="git status"
 alias gd="git diff | gitx"
+alias gc="git commit -m"
+alias gca="git commit -a -m"
