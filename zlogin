@@ -20,4 +20,4 @@ export CLICOLOR=1
 setopt prompt_subst
 
 # prompt
-export PS1='(${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m":}%{$fg_bold[blue]%}%.%{$reset_color%})$(git_prompt_info) '
+export PS1='[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m":}%{$fg_bold[blue]%}%.%{$reset_color%}]$(git_prompt_info) '
