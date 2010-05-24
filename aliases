@@ -1,7 +1,8 @@
 alias e="mvim ."
 
 alias gs="git status"
-alias gd="git diff --cached | gitx"
+alias gd="git diff HEAD | gitx"
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gu="git reset --soft HEAD^"
+alias gra="git status | grep deleted | awk '{print \$3}' | xargs git rm"
