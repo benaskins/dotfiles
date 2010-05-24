@@ -1,5 +1,5 @@
 " Font
-set guifont=Inconsolata:h15.00
+set guifont=Inconsolata:h16.00
 
 " No audible bell
 set vb
@@ -14,4 +14,3 @@ set guioptions+=c
 if filereadable($HOME . "/.gvimrc.local")
   source ~/.gvimrc.local
 endif
-
