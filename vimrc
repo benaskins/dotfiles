@@ -1,6 +1,16 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+
 set nocompatible
+
+" pathogen.vim replaces normal ~/.vim mess
+filetype off 
+set shell=/bin/bash
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start

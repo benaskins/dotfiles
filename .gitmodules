@@ -1,0 +1,12 @@
+[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-pathogen"]
+	path = /Users/benj/src/dotfiles/vim/bundle/vim-pathogen
+	url = http://github.com/tpope/vim-pathogen.git
+[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-rails"]
+	path = /Users/benj/src/dotfiles/vim/bundle/vim-rails
+	url = http://github.com/tpope/vim-rails.git
+[submodule "/Users/benj/src/dotfiles/vim/bundle/nerdtree"]
+	path = /Users/benj/src/dotfiles/vim/bundle/nerdtree
+	url = http://github.com/scrooloose/nerdtree.git
+[submodule "/Users/benj/src/dotfiles/vim/bundle/ack.vim"]
+	path = /Users/benj/src/dotfiles/vim/bundle/ack.vim
+	url = http://github.com/mileszs/ack.vim.git
