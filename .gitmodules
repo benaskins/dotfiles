@@ -10,3 +10,6 @@
 [submodule "/Users/benj/src/dotfiles/vim/bundle/nerdcommenter"]
 	path = /Users/benj/src/dotfiles/vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
+[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-haml"]
+	path = /Users/benj/src/dotfiles/vim/bundle/vim-haml
+	url = http://github.com/tpope/vim-haml.git
