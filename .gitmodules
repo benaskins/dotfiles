@@ -1,6 +1,3 @@
-[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-pathogen"]
-	path = /Users/benj/src/dotfiles/vim/bundle/vim-pathogen
-	url = http://github.com/tpope/vim-pathogen.git
 [submodule "/Users/benj/src/dotfiles/vim/bundle/vim-rails"]
 	path = /Users/benj/src/dotfiles/vim/bundle/vim-rails
 	url = http://github.com/tpope/vim-rails.git
