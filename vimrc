@@ -178,3 +178,10 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 " Window navigation
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
+
+" Staying the hell out of insert mode
+" http://cloudhead.io/2010/04/24/staying-the-hell-out-of-insert-mode/
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
