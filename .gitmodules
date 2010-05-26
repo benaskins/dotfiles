@@ -13,3 +13,6 @@
 [submodule "/Users/benj/src/dotfiles/vim/bundle/vim-haml"]
 	path = /Users/benj/src/dotfiles/vim/bundle/vim-haml
 	url = http://github.com/tpope/vim-haml.git
+[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-align"]
+	path = /Users/benj/src/dotfiles/vim/bundle/vim-align
+	url = http://github.com/tsaleh/vim-align.git
