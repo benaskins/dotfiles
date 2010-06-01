@@ -3,4 +3,4 @@ if [ -e "$HOME/.zshenv.local" ]; then
   source "$HOME/.zshenv.local"
 fi
 
-export PATH=~/bin:$PATH
+export PATH=~/bin:/usr/local/bin:$PATH
