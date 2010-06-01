@@ -1,18 +1,18 @@
-[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-rails"]
-	path = /Users/benj/src/dotfiles/vim/bundle/vim-rails
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
 	url = http://github.com/tpope/vim-rails.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/nerdtree"]
-	path = /Users/benj/src/dotfiles/vim/bundle/nerdtree
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
 	url = http://github.com/scrooloose/nerdtree.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/ack.vim"]
-	path = /Users/benj/src/dotfiles/vim/bundle/ack.vim
+[submodule "vim/bundle/ack.vim"]
+	path = vim/bundle/ack.vim
 	url = http://github.com/mileszs/ack.vim.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/nerdcommenter"]
-	path = /Users/benj/src/dotfiles/vim/bundle/nerdcommenter
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-haml"]
-	path = /Users/benj/src/dotfiles/vim/bundle/vim-haml
+[submodule "vim/bundle/vim-haml"]
+	path = vim/bundle/vim-haml
 	url = http://github.com/tpope/vim-haml.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-align"]
-	path = /Users/benj/src/dotfiles/vim/bundle/vim-align
+[submodule "vim/bundle/vim-align"]
+	path = vim/bundle/vim-align
 	url = http://github.com/tsaleh/vim-align.git
