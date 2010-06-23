@@ -6,6 +6,8 @@
 #   thor vim:update
 #   thor vim:add git://github.com/tpope/vim-rails.git
 #
+
+require 'ruby-debug'
 require 'pathname'
 require 'pp'
 
@@ -36,10 +38,12 @@ class Vim < Thor
 
     Dir.chdir(dotgit.parent) do
       if options.name?
-        name = params.name
+        name = options.name
       else
         name = repo[/([^\/]+)\.git$/,1]
       end
+
+      debugger()
 
       system "git submodule add #{repo} #{bundle_path+name}".tap {|s| puts "running #{s}"}
     end

@@ -16,3 +16,6 @@
 [submodule "vim/bundle/vim-align"]
 	path = vim/bundle/vim-align
 	url = http://github.com/tsaleh/vim-align.git
+[submodule "/Users/benj/src/dotfiles/vim/bundle/matchit"]
+	path = /Users/benj/src/dotfiles/vim/bundle/matchit
+	url = http://github.com/edsono/vim-matchit.git
