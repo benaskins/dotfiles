@@ -5,8 +5,8 @@ compinit
 # automatically enter directories without cd
 setopt auto_cd
 
-# use vim as an editor
-export EDITOR=mvim
+# use vim a9s an editor
+export EDITOR='mvim -f -c "au VimLeave * !open -a Terminal"'
 
 # aliases
 if [ -e "$HOME/.aliases" ]; then
