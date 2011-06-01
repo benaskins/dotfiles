@@ -8,5 +8,9 @@ alias gu="git reset --soft HEAD^"
 alias gra="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gp="git push"
 
+alias gt="git log --format=format:'%an %ai %s' | grep 'Ben Askins'"
+
+alias pv="(cd /Users/benj/Development/client_projects/davidson_mob; ./prod_versions)"
+
 alias ss="script/server"
 alias sc="script/console"
