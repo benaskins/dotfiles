@@ -16,9 +16,12 @@
 [submodule "vim/bundle/vim-align"]
 	path = vim/bundle/vim-align
 	url = http://github.com/tsaleh/vim-align.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/matchit"]
-	path = /Users/benj/src/dotfiles/vim/bundle/matchit
+[submodule "vim/bundle/matchit"]
+	path = vim/bundle/matchit
 	url = http://github.com/edsono/vim-matchit.git
-[submodule "/Users/benj/src/dotfiles/vim/bundle/vim-coffee-script"]
-	path = /Users/benj/src/dotfiles/vim/bundle/vim-coffee-script
+[submodule "vim/bundle/vim-coffee-script"]
+	path = vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/Command-T"]
+	path = vim/bundle/Command-T
+	url = https://github.com/vim-scripts/Command-T.git
