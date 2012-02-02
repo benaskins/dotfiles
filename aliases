@@ -12,5 +12,19 @@ alias gt="git log --format=format:'%an %ai %s' | grep 'Ben Askins'"
 
 alias pv="(cd /Users/benj/Development/client_projects/davidson_mob; ./prod_versions)"
 
-alias ss="script/server"
-alias sc="script/console"
+alias ss="script/rails server"
+alias sc="script/rails console"
+alias be="bundle exec"
+alias rake="be rake"
+
+alias sp="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias sr="redis-server /usr/local/etc/redis.conf"
+alias jw="VVERBOSE=true rake jobs:work"
+
+alias rtu="./script/rtu"
+alias rti="./script/rti"
+
+alias rhd="RAILS_ENV=production rake heroku:deploy"
+alias rhd="RAILS_ENV=production rake heroku:deploy:lite"
+
+alias fs='bundle exec foreman start'
