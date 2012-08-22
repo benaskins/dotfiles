@@ -139,6 +139,9 @@ imap <C-F> <C-R>=expand("%")<CR>
 " overwriting the default register
 vmap P p :call setreg('"', getreg('0')) <CR>
 
+" Clipboard as register
+set clipboard=unnamed
+
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
 

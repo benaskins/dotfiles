@@ -1,7 +1,7 @@
 alias e="mvim ."
 
 alias gs="git status"
-alias gd="git diff HEAD | gitx"
+alias gd="git difftool HEAD"
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gu="git reset --soft HEAD^"
@@ -25,6 +25,6 @@ alias rtu="./script/rtu"
 alias rti="./script/rti"
 
 alias rhd="RAILS_ENV=production rake heroku:deploy"
-alias rhd="RAILS_ENV=production rake heroku:deploy:lite"
+alias rhdl="RAILS_ENV=production rake heroku:deploy:lite"
 
-alias fs='bundle exec foreman start'
+alias fs='PORT=3000 bundle exec foreman start'
