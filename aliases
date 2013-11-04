@@ -10,6 +10,10 @@ alias gp="git push"
 
 alias gt="git log --format=format:'%an %ai %s' | grep 'Ben Askins'"
 
+alias git="noglob git"
+
+alias bower="noglob bower"
+
 alias pv="(cd /Users/benj/Development/client_projects/davidson_mob; ./prod_versions)"
 
 alias ss="script/rails server"

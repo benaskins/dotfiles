@@ -30,3 +30,5 @@ setopt histignoredups
 
 # keep more history
 export HISTSIZE=200
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
