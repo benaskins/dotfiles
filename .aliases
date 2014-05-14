@@ -1,0 +1,10 @@
+alias e="vim ."
+
+alias gs="git status"
+alias gd="git difftool HEAD"
+alias gc="git commit -m"
+alias gca="git commit -a -m"
+alias gu="git reset --soft HEAD^"
+alias gra="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gp="git push"
+
