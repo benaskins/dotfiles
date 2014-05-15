@@ -14,3 +14,8 @@ set shiftwidth=2
 set expandtab
 
 set number
+
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
