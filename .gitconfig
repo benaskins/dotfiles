@@ -19,3 +19,5 @@
 [format]
   pretty = %Cblue%h%Creset %Cgreen[%cr]%Creset (%an) %s
 
+[core]
+	excludesfile = /Users/benaskins/.gitignore_global
