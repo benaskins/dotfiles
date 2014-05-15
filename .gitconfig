@@ -15,4 +15,7 @@
 [mergetool]
 	prompt = false
 [diff]
-	tool = Kaleidoscope
+  tool = Kaleidoscope
+[format]
+  pretty = %Cblue%h%Creset %Cgreen[%cr]%Creset (%an) %s
+
