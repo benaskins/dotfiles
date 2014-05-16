@@ -1,3 +1,4 @@
+install ag
 install ansible
 install bash-completion
 install chruby
