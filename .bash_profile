@@ -18,5 +18,7 @@ do
   export $DIR=$dev/$DIR
 done
 
+export EDITOR=vim
+
 chruby ruby-2.1
 
