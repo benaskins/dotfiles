@@ -15,6 +15,8 @@ set expandtab
 
 set number
 
+set timeoutlen=10000 ttimeoutlen=10
+
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
