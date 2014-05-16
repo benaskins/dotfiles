@@ -6,3 +6,4 @@ bootstrap.exclusions
 *.swp
 Brewfile
 .gitignore
+.gitmodules
