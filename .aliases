@@ -9,3 +9,5 @@ alias gra="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gp="git push"
 
 alias be="bundle exec"
+
+alias reload="source ~/.bash_profile"
