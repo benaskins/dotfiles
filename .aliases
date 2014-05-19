@@ -8,3 +8,4 @@ alias gu="git reset --soft HEAD^"
 alias gra="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gp="git push"
 
+alias be="bundle exec"
