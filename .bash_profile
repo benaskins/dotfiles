@@ -20,5 +20,7 @@ done
 
 export EDITOR=vim
 
+set -o vi
+
 chruby ruby-2.1
 
