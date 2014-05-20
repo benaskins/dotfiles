@@ -20,3 +20,9 @@ inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
 inoremap <Down>  <NOP>
+
+" Insert current path in command mode
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" Insert current file name in command mode
+cmap <C-F> <C-R>=expand("%:p")<CR>
