@@ -26,3 +26,6 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " Insert current file name in command mode
 cmap <C-F> <C-R>=expand("%:p")<CR>
+
+" \c - open a command to pipe the current file to the system clipboard
+map <Leader>c :!more <C-R>=expand("%:p")<CR> \| pbcopy
