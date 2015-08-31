@@ -20,6 +20,9 @@ done
 
 export EDITOR=vim
 
+export GOPATH=~/Development/gowork
+export PATH=$GOPATH/bin:$PATH
+
 set -o vi
 
 chruby ruby-2.1
