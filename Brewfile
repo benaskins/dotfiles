@@ -3,6 +3,7 @@ install ansible
 install bash-completion
 install chruby
 install git
+install go
 install mysql
 install postgresql
 install reattach-to-user-namespace
