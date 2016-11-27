@@ -1,5 +1,7 @@
 alias e="vim ."
 
+alias ag="ag --path-to-agignore ~/.agignore"
+
 alias gs="git status"
 alias gd="git difftool HEAD"
 alias gc="git commit -m"
