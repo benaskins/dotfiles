@@ -8,8 +8,8 @@ source ~/.aliases
 
 source ~/.git-prompt
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
 
 export dev=~/Development
 
@@ -25,5 +25,5 @@ export PATH=$GOPATH/bin:$PATH
 
 set -o vi
 
-chruby ruby-2.1
+# chruby ruby-2.1
 
