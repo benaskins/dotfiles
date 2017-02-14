@@ -15,3 +15,5 @@ alias be="bundle exec"
 alias reload="source ~/.bash_profile"
 
 alias n='vim ~/Dropbox/Notes/$(date +"%Y-%m-%d").md'
+
+alias mux='tmuxinator'
