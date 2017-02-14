@@ -25,5 +25,7 @@ export PATH=$GOPATH/bin:$PATH
 
 set -o vi
 
+source /opt/boxen/env.sh
+
 # chruby ruby-2.1
 
