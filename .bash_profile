@@ -11,13 +11,6 @@ source ~/.git-prompt
 # source /usr/local/share/chruby/chruby.sh
 # source /usr/local/share/chruby/auto.sh
 
-export dev=~/Development
-
-for DIR in `ls $dev`
-do
-  export $DIR=$dev/$DIR
-done
-
 export EDITOR=vim
 
 set -o vi
