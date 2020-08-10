@@ -3,7 +3,7 @@ function parse_git_branch {
 }
 function check_git_changes {
  var=`git status 2> /dev/null | sed -e '/working tree clean$/!d' | wc -l`
- if [ $var -ne 0 ]; then
+ if [ $var -ne 1 ]; then
   tput setaf 1 # red
  else
   tput setaf 2 # green
