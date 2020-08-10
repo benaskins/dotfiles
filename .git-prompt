@@ -2,8 +2,8 @@ function parse_git_branch {
  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 function check_git_changes {
- var=`git status 2> /dev/null | sed -e '/working directory clean$/!d' | wc -l`
- if [ $var -ne 1 ]; then
+ var=`git status -s 2> /dev/null | sed -e '/working directory clean$/!d' | wc -l`
+ if [ $var -ne 0 ]; then
   tput setaf 1 # red
  else
   tput setaf 2 # green
