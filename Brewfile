@@ -1,5 +1,6 @@
 brew "ag"
 brew "ansible"
+brew "bash"
 brew "bash-completion"
 brew "chruby"
 brew "git"
