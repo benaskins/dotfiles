@@ -1,4 +1,3 @@
-#!/bin/bash
 cd "$(dirname "$0")"
 git pull
 function doIt() {
@@ -14,4 +13,3 @@ else
   fi
 fi
 unset doIt
-source ~/.bash_profile

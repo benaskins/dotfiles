@@ -4,6 +4,6 @@ bootstrap.sh
 README.md
 bootstrap.exclusions
 *.swp
-Brewfile
+Brewfile*
 .gitignore
 .gitmodules
