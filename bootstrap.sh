@@ -13,3 +13,5 @@ else
   fi
 fi
 unset doIt
+
+brew bundle

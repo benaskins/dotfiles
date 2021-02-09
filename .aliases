@@ -1,0 +1,34 @@
+alias gs="git status"
+alias gd="git difftool HEAD"
+alias gc="git commit -m"
+alias gca="git commit -a -m"
+alias gu="git reset --soft HEAD^"
+alias gra="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias gp="git push"
+
+# Interactive Kotlin
+alias ik="kotlinc-jvm"
+
+# go from the command. e.g. `go registry` 
+function sqgo() {
+  open "https://go/$1"
+}
+
+alias sg="sqgo"
+
+# jump to polyrepo subdir from anywhere
+function jump() {
+  cd ~/Development/polyrepo/$1
+}
+
+alias j="jump"
+
+# team branch naming conventions
+function br() {
+  DATE=$(date "+%Y%m%d")
+  git checkout -b baskins/$DATE/$1
+}
+
+export df=~/src/dotfiles
+
+alias reload="source ~/.zshrc"
