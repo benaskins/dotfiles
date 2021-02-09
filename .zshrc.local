@@ -1,0 +1,1 @@
+export STOP_CONTAINER_ON_EXIT=false
