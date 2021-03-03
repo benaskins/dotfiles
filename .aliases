@@ -1,5 +1,5 @@
 alias gs="git status"
-alias gd="git difftool HEAD"
+alias gd="git diff HEAD"
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gu="git reset --soft HEAD^"
