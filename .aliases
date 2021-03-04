@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 alias gs="git status"
 alias gd="git diff HEAD"
 alias gc="git commit -m"
@@ -16,10 +18,20 @@ function sqgo() {
 
 alias sg="sqgo"
 
+export polyrepo=~/Development/polyrepo/
+
 # jump to polyrepo subdir from anywhere
 function jump() {
-  cd ~/Development/polyrepo/$1
+  cd $polyrepo/$1
 }
+
+function jump-ac {
+  jumpChoices=()
+  while IFS="" read -r fullpath; do jumpChoices+=("$fullpath:t"); done < <(ls -d -1 $polyrepo*/)
+  reply=($jumpChoices[@])
+}
+
+compctl -K jump-ac jump
 
 alias j="jump"
 
