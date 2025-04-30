@@ -4,7 +4,7 @@ set -e
 echo "🔗 Linking dotfiles into ~/"
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-FILES=(".zshrc" ".aliases" ".git_aliases" ".zshrc.local" ".tmux.conf" ".vimrc")
+FILES=(".zshrc" ".aliases" ".git_aliases" ".tmux.conf" ".vimrc")
 
 for file in "${FILES[@]}"; do
   TARGET="$HOME/$file"

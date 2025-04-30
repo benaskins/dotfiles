@@ -16,6 +16,7 @@ set smartcase
 set clipboard=unnamedplus
 set mouse=a
 set background=dark   " assume a dark terminal, helps with contrast
+colorscheme habamax
 
 " Leader
 let mapleader = ","
