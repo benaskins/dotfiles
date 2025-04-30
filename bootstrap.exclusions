@@ -1,9 +1,0 @@
-.git/
-.DS_Store
-bootstrap.sh
-README.md
-bootstrap.exclusions
-*.swp
-Brewfile*
-.gitignore
-.gitmodules
