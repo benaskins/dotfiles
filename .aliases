@@ -9,3 +9,7 @@ alias gra="git status | grep deleted | awk '{print $3}' | xargs git rm"
 alias gp="git push"
 
 alias reload="source ~/.zshrc"
+
+# Force Homebrew Python 3.13 as default
+alias python3="/opt/homebrew/bin/python3"
+alias pip="/opt/homebrew/bin/pip3"
