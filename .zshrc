@@ -4,6 +4,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # PATH
+export PATH="$HOME/dev/aurelia/lamina/bin:$PATH"
 export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"

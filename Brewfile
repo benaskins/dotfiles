@@ -12,6 +12,7 @@ brew "fd"
 brew "bat"                    # prettier `cat`
 brew "tree"
 brew "python@3.12"
+brew "node"
 
 # --- AI & ML Tools ---
 brew "ollama"                 # Local LLM host
