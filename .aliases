@@ -1,5 +1,6 @@
 # ~/.aliases — muscle memory preserved
 
+# Git aliases
 alias gs="git status"
 alias gd="git diff HEAD"
 alias gc="git commit -m"
@@ -8,8 +9,27 @@ alias gu="git reset --soft HEAD^"
 alias gra="git status | grep deleted | awk '{print $3}' | xargs git rm"
 alias gp="git push"
 
-alias reload="source ~/.zshrc"
+# Navigation aliases
+alias ll="exa -la"
+alias ..="cd .."
+alias ...="cd ../.."
+alias mkdir="mkdir -p"
 
-# Force Homebrew Python 3.13 as default
-alias python3="/opt/homebrew/bin/python3"
-alias pip="/opt/homebrew/bin/pip3"
+# System aliases
+alias df="df -h"
+alias du="du -h"
+alias free="free -h"
+
+# Python aliases
+alias py="python"
+alias pip="pip"
+alias venv="python -m venv"
+alias activate="source .venv/bin/activate"
+alias deactivate="deactivate"
+alias pip-upgrade="pip list --outdated | cut -d ' ' -f1 | tail -n +3 | xargs -n1 pip install -U"
+
+# Utility aliases
+alias reload="source ~/.zshrc"
+alias path='echo $PATH | tr -s ":" "\n"'
+alias ip="curl -s https://api.ipify.org"
+alias localip="ipconfig getifaddr en0"
