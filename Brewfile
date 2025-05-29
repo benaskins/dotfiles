@@ -31,7 +31,7 @@ brew "libomp"                 # Enables multi-threading in CoreML & transformers
 brew "glow"                   # Markdown preview
 brew "mdcat"
 brew "git-delta"              # Better git diff visualization
-brew "exa"                    # Better directory listing
+brew "eza"                    # Better directory listing (modern exa)
 brew "tldr"                   # Simplified command documentation
 brew "fzf"                    # Fuzzy finding
 brew "zoxide"                 # Smarter directory navigation
@@ -46,5 +46,5 @@ cask "rectangle"
 cask "arc"
 
 # --- Optional: For container work ---
-# brew "docker"
-# brew "colima"
+brew "docker"
+brew "colima"

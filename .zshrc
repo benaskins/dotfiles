@@ -17,28 +17,24 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# Function to create and activate a new virtual environment
-function mkvenv() {
-    python -m venv .venv
-    source .venv/bin/activate
+# Docker environment management
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+export BUILDKIT_PROGRESS=plain
+
+# Function to start Colima with default settings
+function colima-start() {
+    colima start --cpu 4 --memory 8 --disk 100
 }
 
-# Function to activate existing virtual environment
-function activate() {
-    if [ -d ".venv" ]; then
-        source .venv/bin/activate
-    else
-        echo "No .venv directory found"
-    fi
+# Function to stop Colima
+function colima-stop() {
+    colima stop
 }
 
-# Function to deactivate virtual environment
-function deactivate() {
-    if [ -n "$VIRTUAL_ENV" ]; then
-        command deactivate
-    else
-        echo "No virtual environment active"
-    fi
+# Function to show Docker container status
+function docker-status() {
+    docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 }
 
 # Shell improvements
