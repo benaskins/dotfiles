@@ -1,0 +1,16 @@
+#!/bin/bash
+# Spawn a named tmux window with Claude Code in superpowers mode
+# Usage: spawn <name>
+
+NAME="${1:?Usage: spawn <name>}"
+WORKTREE="$(pwd)/.worktrees/$NAME"
+
+if [ ! -d "$WORKTREE" ]; then
+  echo "Error: worktree not found at $WORKTREE" >&2
+  exit 1
+fi
+
+tmux new-window -n "$NAME" -c "$WORKTREE"
+tmux send-keys "claude --dangerously-skip-permissions" Enter
+tmux split-window -v -c "$WORKTREE"
+tmux select-pane -t 0
