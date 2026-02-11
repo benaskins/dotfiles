@@ -59,7 +59,7 @@ elif [[ "$MINIMAL" == true ]]; then
   FILES=(".tmux.conf" ".vimrc")
   echo "📝 Minimal setup: linking vim and tmux configs only"
 else
-  FILES=(".zshrc" ".aliases" ".git_aliases" ".tmux.conf" ".vimrc" ".python-version")
+  FILES=(".zshrc" ".aliases" ".git_aliases" ".tmux.conf" ".vimrc" ".python-version" ".env")
   echo "📝 Linking all dotfiles"
 fi
 

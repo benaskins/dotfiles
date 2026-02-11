@@ -1,4 +1,4 @@
-" Lamina shell Vim config — clean, no nonsense
+" Vim config — clean, no nonsense
 
 syntax on
 set number            " show absolute line numbers
@@ -13,7 +13,7 @@ set scrolloff=5
 set incsearch
 set ignorecase
 set smartcase
-set clipboard=unnamedplus
+set clipboard=unnamed
 set mouse=a
 set background=dark   " assume a dark terminal, helps with contrast
 colorscheme habamax

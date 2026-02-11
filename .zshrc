@@ -1,10 +1,9 @@
-# ~/.zshrc — Lamina shell config (iSH-style prompt)
+# ~/.zshrc — Shell config (iSH-style prompt)
 
 # Homebrew path
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # PATH
-export PATH="$HOME/dev/aurelia/lamina/bin:$PATH"
 export PATH="$HOME/dev/dotfiles/scripts:$PATH"
 export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
@@ -60,3 +59,9 @@ PROMPT=" v "
 [ -f ~/.aliases ] && source ~/.aliases
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.git_aliases ] && source ~/.git_aliases
+[ -f ~/.env ] && source ~/.env
+
+# Model Selection Framework alias
+alias ms='/Users/benaskins/dev/playground/model-selection/model-selection'
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
