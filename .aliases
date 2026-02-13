@@ -58,6 +58,9 @@ alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
 alias dce='docker-compose exec'
 
+# Agent guardrails
+alias go='echo "we only run go in containers on aurelia-core-infrastructure"'
+
 # Colima aliases
 alias colima-start='colima start --cpu 4 --memory 8 --disk 100'
 alias colima-stop='colima stop'
