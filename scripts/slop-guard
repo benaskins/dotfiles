@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# slop-guard — catch AI-generated slop in source files
+#
+# Usage:
+#   slop-guard file.go file.py       # check specific files
+#   slop-guard --staged              # check git staged files (for pre-commit)
+#   echo '{}' | slop-guard --hook    # Claude Code PostToolUse mode (JSON on stdin)
+#
+# Config:
+#   .slop-allow in repo root — one word per line to suppress (# comments ok)
+
+# --- word lists ---
+
+SLOP_WORDS='delve|utilize|leverage|streamline|robust|comprehensive|seamless|endeavor|harness|bolster|foster|empower|elevate|pivotal|groundbreaking|synergy|holistic|paradigm|actionable|innovative|facilitate|realm|tapestry|multifaceted|intricate|orchestrate|myriad|plethora|landscape|stakeholder|ecosystem|game.changer|deep.dive|best.practice|cutting.edge'
+
+COMMENT_SLOP='(//|#)\s*(This (function|method|block|code|section) |Here we |The following |Note that this )'
+
+# file extensions to check (keeps it fast — skip binaries/assets)
+EXTENSIONS='go|py|js|ts|jsx|tsx|rs|rb|java|kt|swift|c|cpp|h|hpp|sh|bash|zsh|yaml|yml|toml|md'
+
+# --- parse args ---
+
+MODE="check"
+EXIT_CODE=1 # 1=block (git), 2=feedback (claude hook)
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --hook)   MODE="hook"; EXIT_CODE=2; shift ;;
+    --staged) MODE="staged"; shift ;;
+    -h|--help)
+      sed -n '3,11p' "$0"
+      exit 0
+      ;;
+    *) break ;;
+  esac
+done
+
+# --- collect files ---
+
+files=()
+case "$MODE" in
+  hook)
+    f=$(jq -r '.tool_input.file_path // empty' 2>/dev/null || true)
+    [[ -n "$f" ]] && files+=("$f")
+    ;;
+  staged)
+    while IFS= read -r f; do
+      files+=("$f")
+    done < <(git diff --cached --name-only --diff-filter=ACM 2>/dev/null || true)
+    ;;
+  *)
+    files=("$@")
+    ;;
+esac
+
+[[ ${#files[@]} -eq 0 ]] && exit 0
+
+# --- load .slop-allow ---
+
+allowed=""
+# resolve repo root from the first file's directory, not CWD
+first_dir="$(dirname "${files[0]}")"
+root="$(cd "$first_dir" 2>/dev/null && git rev-parse --show-toplevel 2>/dev/null || echo .)"
+if [[ -f "$root/.slop-allow" ]]; then
+  while IFS= read -r word; do
+    word="${word%%#*}"             # strip inline comments
+    word="$(echo "$word" | xargs)" # trim whitespace
+    [[ -n "$word" ]] && allowed+="${word}|"
+  done < "$root/.slop-allow"
+fi
+
+# --- scan ---
+
+issues=""
+count=0
+
+for file in "${files[@]}"; do
+  [[ ! -f "$file" ]] && continue
+
+  # skip non-source files
+  ext="${file##*.}"
+  [[ ! "$ext" =~ ^($EXTENSIONS)$ ]] && continue
+
+  # slop words
+  while IFS=: read -r num line; do
+    match=$(echo "$line" | grep -ioE "\b($SLOP_WORDS)\b" | head -1)
+    [[ -z "$match" ]] && continue
+    lmatch=$(echo "$match" | tr '[:upper:]' '[:lower:]')
+    # skip allowed words
+    if [[ -n "$allowed" ]]; then
+      remainder="${allowed%|}"
+      [[ "$lmatch" =~ ^($remainder)$ ]] && continue
+    fi
+    issues+="  ${file}:${num}  \"${match}\""$'\n'
+    ((count++)) || true
+  done < <(grep -inE "\b($SLOP_WORDS)\b" "$file" 2>/dev/null || true)
+
+  # comment slop
+  while IFS=: read -r num line; do
+    snippet=$(echo "$line" | sed 's/^[[:space:]]*//' | cut -c1-60)
+    issues+="  ${file}:${num}  filler comment: ${snippet}"$'\n'
+    ((count++)) || true
+  done < <(grep -nE "$COMMENT_SLOP" "$file" 2>/dev/null || true)
+done
+
+if [[ $count -gt 0 ]]; then
+  {
+    echo "slop-guard: ${count} issue(s)"
+    echo "$issues"
+    echo "  Suppress: add words to .slop-allow (one per line)"
+  } >&2
+  exit "$EXIT_CODE"
+fi
+
+exit 0

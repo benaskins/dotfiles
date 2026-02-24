@@ -70,6 +70,16 @@ if [[ "$MINIMAL" == false ]]; then
   mkdir -p ~/Downloads
   mkdir -p ~/.local/bin
   mkdir -p ~/.cache/zsh
+
+  # Link scripts into ~/.local/bin
+  for script in "$DOTFILES_DIR"/scripts/*; do
+    name="$(basename "$script")"
+    target="$HOME/.local/bin/$name"
+    if [ ! -e "$target" ]; then
+      echo "Linking $name to ~/.local/bin/"
+      ln -s "$script" "$target"
+    fi
+  done
 fi
 
 for file in "${FILES[@]}"; do
