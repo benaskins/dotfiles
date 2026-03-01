@@ -17,6 +17,9 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# Claude Code
+export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
+
 # Docker environment management
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
