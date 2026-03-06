@@ -1,67 +1,38 @@
-# ~/.aliases — muscle memory preserved
+# ~/.aliases
 
-# Git aliases
+# Git
 alias gs="git status"
 alias gd="git diff HEAD"
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gu="git reset --soft HEAD^"
-alias gra="git status | grep deleted | awk '{print $3}' | xargs git rm"
 alias gp="git push"
 
-# Navigation aliases
-alias ll="exa -la"
+# Navigation
+alias ll="eza -la"
 alias ..="cd .."
 alias ...="cd ../.."
 alias mkdir="mkdir -p"
 
-# System aliases
+# System
 alias df="df -h"
 alias du="du -h"
-alias free="free -h"
-
-# Python aliases
-alias py="python"
-alias pip="pip"
-alias venv="python -m venv"
-alias activate="source .venv/bin/activate"
-alias deactivate="deactivate"
-alias pip-upgrade="pip list --outdated | cut -d ' ' -f1 | tail -n +3 | xargs -n1 pip install -U"
-
-# Utility aliases
 alias reload="source ~/.zshrc"
 alias path='echo $PATH | tr -s ":" "\n"'
-alias ip="curl -s https://api.ipify.org"
-alias localip="ipconfig getifaddr en0"
 
-# Docker aliases
+# Lamina
+alias lm="cd ~/dev/lamina"
+alias lr="lamina repo"
+alias lrs="lamina repo status"
+alias lt="lamina test"
+alias ld="lamina deps"
+
+# Aurelia
+alias as="aurelia status"
+
+# Docker (OrbStack)
 alias d='docker'
-alias dc='docker-compose'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
-alias di='docker images'
 alias dex='docker exec -it'
-alias dlog='docker logs'
-alias dlogf='docker logs -f'
-alias dstop='docker stop'
-alias drm='docker rm'
-alias drmi='docker rmi'
-alias dprune='docker system prune -f'
-alias dclean='docker system prune -af --volumes'
-
-# Docker Compose aliases
-alias dcu='docker-compose up'
-alias dcud='docker-compose up -d'
-alias dcd='docker-compose down'
-alias dcb='docker-compose build'
-alias dcl='docker-compose logs'
-alias dclf='docker-compose logs -f'
-alias dce='docker-compose exec'
-
-# Agent guardrails
-alias go='echo "we only run go in containers on aurelia-core-infrastructure"'
-
-# Colima aliases
-alias colima-start='colima start --cpu 4 --memory 8 --disk 100'
-alias colima-stop='colima stop'
-alias colima-status='colima status'
+alias dlog='docker logs -f'

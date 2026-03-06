@@ -1,46 +1,20 @@
-# ~/.zshrc — Shell config (iSH-style prompt)
+# ~/.zshrc
 
-# Homebrew path
+# Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # PATH
-export PATH="$HOME/dev/dotfiles/scripts:$PATH"
-export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/dev/dotfiles/scripts:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-# Python environment management
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # Claude Code
 export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 
-# Docker environment management
+# Docker (OrbStack)
 export DOCKER_BUILDKIT=1
-export COMPOSE_DOCKER_CLI_BUILD=1
-export BUILDKIT_PROGRESS=plain
 
-# Function to start Colima with default settings
-function colima-start() {
-    colima start --cpu 4 --memory 8 --disk 100
-}
-
-# Function to stop Colima
-function colima-stop() {
-    colima stop
-}
-
-# Function to show Docker container status
-function docker-status() {
-    docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-}
-
-# Shell improvements
+# Shell
 autoload -Uz vcs_info
 autoload -Uz compinit && compinit
 zstyle ':completion:*' use-cache on
@@ -58,13 +32,15 @@ zstyle ':vcs_info:git:*' formats ' %b'
 setopt prompt_subst
 PROMPT=" v "
 
-# Load modular config
+# SSH agent
+if [ -z "$SSH_AUTH_SOCK" ] || [ ! -S "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
+ssh-add -l &>/dev/null || ssh-add --apple-load-keychain 2>/dev/null
+
+# Modular config
 [ -f ~/.aliases ] && source ~/.aliases
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.git_aliases ] && source ~/.git_aliases
-[ -f ~/.env ] && source ~/.env
 
-# Model Selection Framework alias
-alias ms='/Users/benaskins/dev/playground/model-selection/model-selection'
-
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
+fpath+=~/.zfunc

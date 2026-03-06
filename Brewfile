@@ -1,50 +1,44 @@
-# --- Core Tools ---
+# --- Core ---
 brew "git"
-brew "gh"                     # GitHub CLI
-brew "coreutils"
+brew "gh"
 brew "zsh"
 brew "tmux"
+brew "neovim"
 brew "htop"
 brew "wget"
 brew "jq"
+
+# --- Search & Navigation ---
 brew "ripgrep"
 brew "fd"
-brew "bat"                    # prettier `cat`
+brew "fzf"
+brew "zoxide"
+brew "eza"
+brew "bat"
 brew "tree"
-brew "python@3.12"
+
+# --- Git ---
+brew "git-delta"
+brew "lazygit"
+
+# --- Text ---
+brew "glow"
+brew "mdcat"
+brew "tldr"
+
+# --- Languages & Build ---
+brew "go"
+brew "just"
 brew "node"
 
-# --- AI & ML Tools ---
-brew "ollama"                 # Local LLM host
-brew "weaviate"               # Optional RAG vector DB
-brew "redis"                  # Fast local kv cache
-brew "pyenv"                  # Python version management
-brew "pyenv-virtualenv"       # Virtual environment management
-brew "pipx"                   # Isolated CLI python tools
-brew "poetry"                 # Modern Python dependency management
+# --- Infrastructure ---
+brew "docker"
+brew "ollama"
+brew "signal-cli"
+brew "hashicorp/tap/vault"
 
-# --- NLP / RAG Helpers ---
-brew "openblas"               # Needed for numpy/scipy on mac
-brew "libomp"                 # Enables multi-threading in CoreML & transformers
-
-# --- Text & Markdown Tools ---
-brew "glow"                   # Markdown preview
-brew "mdcat"
-brew "git-delta"              # Better git diff visualization
-brew "eza"                    # Better directory listing (modern exa)
-brew "tldr"                   # Simplified command documentation
-brew "fzf"                    # Fuzzy finding
-brew "zoxide"                 # Smarter directory navigation
-
-# --- Editors ---
-cask "visual-studio-code"
-brew "neovim"
-
-# --- GUI / Workflow Tools ---
+# --- Apps ---
+cask "orbstack"
 cask "raycast"
 cask "rectangle"
 cask "arc"
-
-# --- Optional: For container work ---
-brew "docker"
-brew "colima"

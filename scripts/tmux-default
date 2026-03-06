@@ -1,0 +1,17 @@
+#!/bin/bash
+# Create or attach to default tmux session with 4-pane layout:
+# - Two full-width panes on top
+# - Two vertical split panes on bottom
+
+SESSION="default"
+
+if tmux has-session -t $SESSION 2>/dev/null; then
+  exec tmux attach-session -t $SESSION
+else
+  tmux new-session -d -s $SESSION
+  tmux split-window -v -t $SESSION    # Split into top and bottom
+  tmux split-window -v -t $SESSION    # Split bottom into middle and bottom
+  tmux split-window -h -t $SESSION    # Split bottom into left and right
+  tmux select-pane -t $SESSION:0      # Select top pane
+  exec tmux attach-session -t $SESSION
+fi

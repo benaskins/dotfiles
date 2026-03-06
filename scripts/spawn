@@ -1,16 +1,22 @@
 #!/bin/bash
-# Spawn a named tmux window with Claude Code in superpowers mode
-# Usage: spawn <name>
+# Spawn a named tmux window with Claude Code
+# Usage: spawn <repo>     — opens ~/dev/lamina/<repo>
+#        spawn .          — opens current directory
 
-NAME="${1:?Usage: spawn <name>}"
-WORKTREE="$(pwd)/.worktrees/$NAME"
+NAME="${1:?Usage: spawn <repo>}"
 
-if [ ! -d "$WORKTREE" ]; then
-  echo "Error: worktree not found at $WORKTREE" >&2
-  exit 1
+if [ "$NAME" = "." ]; then
+  DIR="$(pwd)"
+  NAME="$(basename "$DIR")"
+else
+  DIR="$HOME/dev/lamina/$NAME"
+  if [ ! -d "$DIR" ]; then
+    echo "Error: $DIR not found" >&2
+    exit 1
+  fi
 fi
 
-tmux new-window -n "$NAME" -c "$WORKTREE"
-tmux send-keys "claude --dangerously-skip-permissions" Enter
-tmux split-window -v -c "$WORKTREE"
+tmux new-window -n "$NAME" -c "$DIR"
+tmux send-keys "claude" Enter
+tmux split-window -v -c "$DIR"
 tmux select-pane -t 0
