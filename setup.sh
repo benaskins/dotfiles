@@ -76,6 +76,19 @@ if [[ "$MINIMAL" == false ]]; then
       echo "  $name -> ~/.local/bin/"
     fi
   done
+
+  # Link Claude Code config
+  if [ -d "$DOTFILES_DIR/claude" ]; then
+    mkdir -p "$HOME/.claude"
+    for cfg in "$DOTFILES_DIR"/claude/*; do
+      name="$(basename "$cfg")"
+      target="$HOME/.claude/$name"
+      if [ ! -e "$target" ]; then
+        ln -s "$cfg" "$target"
+        echo "  $name -> ~/.claude/"
+      fi
+    done
+  fi
 fi
 
 for file in "${FILES[@]}"; do
