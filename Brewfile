@@ -3,9 +3,7 @@ brew "git"
 brew "gh"
 brew "zsh"
 brew "tmux"
-brew "neovim"
 brew "htop"
-brew "wget"
 brew "jq"
 
 # --- Search & Navigation ---
@@ -39,6 +37,3 @@ brew "hashicorp/tap/vault"
 
 # --- Apps ---
 cask "orbstack"
-cask "raycast"
-cask "rectangle"
-cask "arc"

@@ -43,3 +43,4 @@ ssh-add -l &>/dev/null || ssh-add --apple-load-keychain 2>/dev/null
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 fpath+=~/.zfunc
+export PATH="$HOME/.local/bin:$PATH"
