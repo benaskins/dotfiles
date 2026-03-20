@@ -1,6 +1,0 @@
-# ~/.git_aliases — branch naming
-
-function br() {
-  DATE=$(date "+%Y%m%d")
-  git checkout -b baskins/$DATE/$1
-}

@@ -22,7 +22,7 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 precmd() {
   vcs_info
-  echo "\033[97;44m ^ $(pwd) \033[0m"
+  echo "\033[97;44m ^ $(hostname -s) $(pwd) \033[0m"
   if [[ -n ${vcs_info_msg_0_} ]]; then
     echo "\033[97;45m ⋯ ${vcs_info_msg_0_} \033[0m"
   fi
@@ -41,6 +41,5 @@ ssh-add -l &>/dev/null || ssh-add --apple-load-keychain 2>/dev/null
 # Modular config
 [ -f ~/.aliases ] && source ~/.aliases
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-[ -f ~/.git_aliases ] && source ~/.git_aliases
 
 fpath+=~/.zfunc
