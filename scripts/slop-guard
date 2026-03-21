@@ -17,6 +17,14 @@ SLOP_WORDS='delve|utilize|leverage|streamline|robust|comprehensive|seamless|ende
 
 COMMENT_SLOP='(//|#)\s*(This (function|method|block|code|section) |Here we |The following |Note that this )'
 
+# --- prose tropes (markdown only) — see https://tropes.fyi ---
+
+EMDASH_THRESHOLD=10  # flag if more than this many em-dashes in a single file
+PROSE_TROPES='[Hh]ere.s the (thing|kicker)|[Ll]et.s (break this down|unpack|explore|dive in)|[Ii]t.s worth noting|[Dd]espite its challenges|[Ss]erves as a|[Ss]tands as a|[Tt]hink of it as'
+
+# military metaphors — unnecessary and exclusionary
+MILITARY_SLOP='battle.tested|battle.hardened|hardened|war.room|in the trenches|front.?lines|deploy.* troops|weaponize|arsenal|ammunition|bombproof|bullet.?proof|mission.?critical|tactical|surgical precision|scorched earth|collateral damage|under fire|double.?edged sword'
+
 # file extensions to check (keeps it fast — skip binaries/assets)
 EXTENSIONS='go|py|js|ts|jsx|tsx|rs|rb|java|kt|swift|c|cpp|h|hpp|sh|bash|zsh|yaml|yml|toml|md'
 
@@ -103,6 +111,36 @@ for file in "${files[@]}"; do
     issues+="  ${file}:${num}  filler comment: ${snippet}"$'\n'
     ((count++)) || true
   done < <(grep -nE "$COMMENT_SLOP" "$file" 2>/dev/null || true)
+
+  # prose tropes (markdown only) — https://tropes.fyi
+  if [[ "$ext" == "md" ]]; then
+    # em-dash density
+    emdash_count=$(set +o pipefail; grep -o '—' "$file" 2>/dev/null | wc -l | tr -d ' ')
+    if [[ "$emdash_count" -gt "$EMDASH_THRESHOLD" ]]; then
+      issues+="  ${file}  em-dash addiction: ${emdash_count} em-dashes (threshold: ${EMDASH_THRESHOLD}) — see https://tropes.fyi"$'\n'
+      ((count++)) || true
+    fi
+
+    # structural tropes
+    while IFS=: read -r num line; do
+      snippet=$(echo "$line" | sed 's/^[[:space:]]*//' | cut -c1-60)
+      issues+="  ${file}:${num}  prose trope: ${snippet} — see https://tropes.fyi"$'\n'
+      ((count++)) || true
+    done < <(grep -nE "$PROSE_TROPES" "$file" 2>/dev/null || true)
+  fi
+
+  # military metaphors (all file types)
+  while IFS=: read -r num line; do
+    match=$(echo "$line" | grep -ioE "$MILITARY_SLOP" | head -1)
+    [[ -z "$match" ]] && continue
+    lmatch=$(echo "$match" | tr '[:upper:]' '[:lower:]')
+    if [[ -n "$allowed" ]]; then
+      remainder="${allowed%|}"
+      [[ "$lmatch" =~ ^($remainder)$ ]] && continue
+    fi
+    issues+="  ${file}:${num}  military trope: \"${match}\""$'\n'
+    ((count++)) || true
+  done < <(grep -inE "$MILITARY_SLOP" "$file" 2>/dev/null || true)
 done
 
 if [[ $count -gt 0 ]]; then
