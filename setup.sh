@@ -94,7 +94,7 @@ fi
 for file in "${FILES[@]}"; do
   TARGET="$HOME/$file"
   SOURCE="$DOTFILES_DIR/$file"
-  if [ -e "$TARGET" ]; then
+  if [ -e "$TARGET" ] || [ -L "$TARGET" ]; then
     echo "  skip $file (exists)"
   else
     ln -s "$SOURCE" "$TARGET"
