@@ -56,7 +56,7 @@ if [[ ${#CUSTOM_FILES[@]} -gt 0 ]]; then
 elif [[ "$MINIMAL" == true ]]; then
   FILES=(".tmux.conf" ".vimrc")
 else
-  FILES=(".zshenv" ".zshrc" ".aliases" ".git_aliases" ".tmux.conf" ".vimrc")
+  FILES=(".bash_profile" ".bashrc" ".aliases" ".tmux.conf" ".vimrc")
 fi
 
 echo "Linking dotfiles..."
@@ -65,8 +65,6 @@ echo "Linking dotfiles..."
 if [[ "$MINIMAL" == false ]]; then
   mkdir -p ~/dev
   mkdir -p ~/.local/bin
-  mkdir -p ~/.cache/zsh
-
   # Link scripts into ~/.local/bin
   for script in "$DOTFILES_DIR"/scripts/*; do
     name="$(basename "$script")"
@@ -116,7 +114,7 @@ if [[ "$LINK_ONLY" == false && "$MINIMAL" == false ]]; then
   # Set Go environment
   go env -w GOPRIVATE="github.com/benaskins/*"
 
-  echo "Done. Reload with: source ~/.zshrc"
+  echo "Done. Reload with: source ~/.bashrc"
 else
   echo "Done."
 fi

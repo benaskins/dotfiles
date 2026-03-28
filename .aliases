@@ -15,7 +15,7 @@ alias mkdir="mkdir -p"
 # System
 alias df="df -h"
 alias du="du -h"
-alias reload="source ~/.zshrc"
+alias reload="source ~/.bashrc"
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # Lamina
