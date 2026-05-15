@@ -43,3 +43,12 @@ brew "direnv"
 
 # --- Apps ---
 cask "orbstack"
+cask "visual-studio-code"
+
+# --- VS Code Extensions ---
+vscode "anthropic.claude-code"
+vscode "github.copilot"
+vscode "github.copilot-chat"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "openai.chatgpt"
