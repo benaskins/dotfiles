@@ -1,7 +1,7 @@
 # ~/.aliases
 
 # Claude
-alias cc="claude --dangerously-skip-permissions"
+alias claude="claude --dangerously-skip-permissions"
 
 # Git
 alias gs="git status"
