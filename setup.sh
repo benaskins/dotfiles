@@ -111,10 +111,23 @@ if [[ "$LINK_ONLY" == false && "$MINIMAL" == false ]]; then
   echo "Installing packages..."
   brew bundle
 
+  # Set Homebrew bash as login shell
+  BREW_BASH="/opt/homebrew/bin/bash"
+  if [ -x "$BREW_BASH" ]; then
+    if ! grep -qx "$BREW_BASH" /etc/shells; then
+      echo "Adding $BREW_BASH to /etc/shells (requires sudo)..."
+      echo "$BREW_BASH" | sudo tee -a /etc/shells > /dev/null
+    fi
+    if [ "$SHELL" != "$BREW_BASH" ]; then
+      echo "Setting login shell to $BREW_BASH..."
+      chsh -s "$BREW_BASH"
+    fi
+  fi
+
   # Set Go environment
   go env -w GOPRIVATE="github.com/benaskins/*"
 
-  echo "Done. Reload with: source ~/.bashrc"
+  echo "Done. Restart your terminal to use Homebrew bash."
 else
   echo "Done."
 fi

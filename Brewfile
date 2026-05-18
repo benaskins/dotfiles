@@ -1,7 +1,8 @@
 # --- Core ---
+brew "bash"
+brew "bash-completion@2"
 brew "git"
 brew "gh"
-brew "zsh"
 brew "tmux"
 brew "htop"
 brew "jq"
