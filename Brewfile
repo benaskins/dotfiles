@@ -35,6 +35,11 @@ brew "docker"
 brew "ollama"
 brew "signal-cli"
 brew "hashicorp/tap/vault"
+brew "awscli"
+brew "aws-vault"
+
+# --- Shell / workflow ---
+brew "direnv"
 
 # --- Apps ---
 cask "orbstack"
