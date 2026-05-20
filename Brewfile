@@ -37,6 +37,7 @@ brew "signal-cli"
 brew "hashicorp/tap/vault"
 brew "awscli"
 brew "aws-vault"
+brew "aws-sam-cli"
 
 # --- Shell / workflow ---
 brew "direnv"
@@ -44,6 +45,7 @@ brew "direnv"
 # --- Apps ---
 cask "orbstack"
 cask "visual-studio-code"
+cask "dotnet-sdk"
 
 # --- VS Code Extensions ---
 vscode "anthropic.claude-code"
