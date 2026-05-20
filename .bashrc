@@ -41,6 +41,11 @@ __prompt_command() {
 PROMPT_COMMAND=__prompt_command
 PS1=" v "
 
+# direnv — must hook AFTER PROMPT_COMMAND is set so its chain isn't clobbered
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook bash)"
+fi
+
 # Completion
 if [ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]; then
   . "/opt/homebrew/etc/profile.d/bash_completion.sh"
