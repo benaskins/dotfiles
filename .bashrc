@@ -4,7 +4,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/dev/dotfiles/scripts:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.dotnet/tools:$HOME/dev/dotfiles/scripts:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
