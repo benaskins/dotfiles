@@ -41,3 +41,12 @@ chrome() {
   shift
   open -na "Google Chrome" --args --profile-directory="$profile" "$@"
 }
+
+# FortiVPN: vpn up | vpn down
+vpn() {
+  case "$1" in
+    up)   ~/dev/forti-vpn/up.sh ;;
+    down) ~/dev/forti-vpn/down.sh ;;
+    *)    echo "usage: vpn up|down" >&2; return 1 ;;
+  esac
+}
