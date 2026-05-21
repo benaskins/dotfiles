@@ -1,69 +1,53 @@
 ---
 name: tmux-pane
-description: Split the current tmux window vertically and operate a second shell in the new pane. Use for long-running processes, monitoring, or parallel work.
+description: Drive the pre-configured workbench and document-viewer tmux panes alongside this conversation. Use for long-running processes, monitoring, parallel work, or displaying files for visual review.
 ---
 
 # tmux-pane
 
-Open a second tmux pane and operate it freely alongside this conversation.
+Two tmux panes are pre-configured by the SessionStart hook
+(`~/.claude/tmux-panes-setup.sh`):
 
-## Setup
+- **Workbench** — long-running processes, log tails, builds, tests.
+  Pane ID in `/tmp/claude-tmux-pane`.
+- **Viewer** — display files, markdown, diffs, images via `bat`, `glow`,
+  `git diff`, `less`, etc. Pane ID in `/tmp/claude-viewer-pane`.
 
-1. Split and capture the new pane ID in one step:
-   ```
-   tmux split-window -v -P -F '#{pane_id}'
-   ```
-2. Title the pane so it's identifiable:
-   ```
-   tmux select-pane -t <pane_id> -T 'claude-workbench'
-   ```
-3. Write the pane ID to a state file so it survives context compaction:
-   ```
-   echo <pane_id> > /tmp/claude-tmux-pane
-   ```
+## Recover the pane IDs
 
-## Recovering the pane
-
-If you lose track of the pane ID (e.g. after context compaction), recover it:
 ```
-cat /tmp/claude-tmux-pane
+WB=$(cat /tmp/claude-tmux-pane)
+VW=$(cat /tmp/claude-viewer-pane)
 ```
 
-To verify it's still alive:
+Verify they're alive:
 ```
-tmux list-panes -F '#{pane_id} #{pane_title} #{pane_current_command}' | grep claude-workbench
-```
-
-If the pane is gone, re-run Setup.
-
-## Operating the pane
-
-Send commands:
-```
-tmux send-keys -t <pane_id> '<command>' Enter
+tmux list-panes -F '#{pane_id} #{pane_title}' | grep -E 'claude-workbench|claude-viewer'
 ```
 
-Read output:
-```
-tmux capture-pane -t <pane_id> -p -S -50
-```
-(`-S -50` captures the last 50 lines. Adjust as needed.)
+If a pane is missing (e.g. user closed it, or you're not in tmux),
+re-run the hook script: `~/.claude/tmux-panes-setup.sh`.
 
-Send Ctrl-C to interrupt:
+## Operate a pane
+
 ```
-tmux send-keys -t <pane_id> C-c
+tmux send-keys -t "$WB" '<command>' Enter        # send a command
+tmux capture-pane -t "$WB" -p -S -50             # read last 50 lines
+tmux send-keys -t "$WB" C-c                       # interrupt
 ```
 
-Close when done:
-```
-tmux kill-pane -t <pane_id> && rm -f /tmp/claude-tmux-pane
-```
+Same for `$VW`.
+
+## When to use which
+
+- **Workbench**: `tail -f`, `npm run dev`, `cargo watch`, `aws-vault exec ... just smoke-test`, anything that runs for a while.
+- **Viewer**: `bat README.md`, `glow PRD-09.md`, `git diff main...HEAD`, `less <(curl ...)`. Use it to put a document in front of the user without dumping it into the transcript.
 
 ## Rules
 
-- Always read the pane output after sending a command to confirm it worked.
-- Use this pane for things that benefit from running alongside the conversation: servers, file watchers, log tails, test loops, builds.
-- Do NOT close the pane unless the user asks or the work is done.
-- If $ARGUMENTS are provided, run them as the first command in the new pane.
+- Always read pane output after sending a command to confirm it worked.
+- Don't kill the panes — they're persistent across the session by design.
+- Don't split new panes yourself; reuse what the hook gave you.
+- If `$ARGUMENTS` are provided, run them in the workbench as the first command.
 
 $ARGUMENTS
