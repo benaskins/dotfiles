@@ -34,3 +34,10 @@ alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias dex='docker exec -it'
 alias dlog='docker logs -f'
+
+# Chrome with a named profile: chrome <profile> [url ...]
+chrome() {
+  local profile="$1"
+  shift
+  open -na "Google Chrome" --args --profile-directory="$profile" "$@"
+}
