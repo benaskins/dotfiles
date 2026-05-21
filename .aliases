@@ -28,6 +28,9 @@ alias ld="lamina deps"
 # Aurelia
 alias as="aurelia status"
 
+# tmux
+alias notes='tmux attach -t meeting-notes || tmux new -s meeting-notes'
+
 # Docker (OrbStack)
 alias d='docker'
 alias dps='docker ps'
