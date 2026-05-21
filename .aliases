@@ -45,8 +45,8 @@ chrome() {
 # FortiVPN: vpn up | vpn down
 vpn() {
   case "$1" in
-    up)   ~/dev/forti-vpn/up.sh ;;
-    down) ~/dev/forti-vpn/down.sh ;;
+    up)   sudo ~/dev/forti-vpn/up.sh ;;
+    down) sudo ~/dev/forti-vpn/down.sh ;;
     *)    echo "usage: vpn up|down" >&2; return 1 ;;
   esac
 }
