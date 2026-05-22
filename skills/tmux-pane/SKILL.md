@@ -5,25 +5,38 @@ description: Drive the pre-configured workbench and document-viewer tmux panes a
 
 # tmux-pane
 
-Two tmux panes are pre-configured by the SessionStart hook
-(`~/.claude/tmux-panes-setup.sh`):
+Two tmux panes are pre-configured per Claude session by the SessionStart
+hook (`~/.claude/tmux-panes-setup.sh`). They are namespaced by this
+Claude pane's tmux id (`${TMUX_PANE#%}`) so concurrent Claude sessions
+in other windows don't collide:
 
 - **Workbench** — long-running processes, log tails, builds, tests.
-  Pane ID in `/tmp/claude-tmux-pane`.
+  Title: `claude-workbench-<tag>`. Pane ID in `/tmp/claude-tmux-pane-<tag>`.
 - **Viewer** — display files, markdown, diffs, images via `bat`, `glow`,
-  `git diff`, `less`, etc. Pane ID in `/tmp/claude-viewer-pane`.
+  `git diff`, `less`, etc.
+  Title: `claude-viewer-<tag>`. Pane ID in `/tmp/claude-viewer-pane-<tag>`.
+
+The SessionStart `additionalContext` in your system prompt always
+contains the resolved `pane_id` values for this session — prefer those
+over recomputing.
 
 ## Recover the pane IDs
 
 ```
-WB=$(cat /tmp/claude-tmux-pane)
-VW=$(cat /tmp/claude-viewer-pane)
+TAG="${TMUX_PANE#%}"
+WB=$(cat "/tmp/claude-tmux-pane-${TAG}")
+VW=$(cat "/tmp/claude-viewer-pane-${TAG}")
 ```
 
-Verify they're alive:
+Verify they're alive (scoped to this window only):
 ```
-tmux list-panes -F '#{pane_id} #{pane_title}' | grep -E 'claude-workbench|claude-viewer'
+tmux list-panes -F '#{pane_id} #{pane_title}' \
+  | grep -E "claude-workbench-${TAG}|claude-viewer-${TAG}"
 ```
+
+Never look up panes by the bare titles `claude-workbench` /
+`claude-viewer` — those don't exist any more, and matching across
+windows would pull in another Claude session's panes.
 
 If a pane is missing (e.g. user closed it, or you're not in tmux),
 re-run the hook script: `~/.claude/tmux-panes-setup.sh`.
