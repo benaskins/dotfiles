@@ -11,6 +11,9 @@ export VISUAL="nvim"
 # Claude Code
 export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 
+# AWS
+export AWS_VAULT_KEYCHAIN_NAME=login
+
 # Docker (OrbStack)
 export DOCKER_BUILDKIT=1
 
