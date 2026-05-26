@@ -40,6 +40,7 @@ brew "aws-vault"
 brew "aws-sam-cli"
 
 # --- Shell / workflow ---
+brew "asciinema"
 brew "direnv"
 
 # --- Apps ---
