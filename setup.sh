@@ -88,20 +88,50 @@ if [[ "$MINIMAL" == false ]]; then
     done
   fi
 
-  # Seed the personal Claude Code account (CLAUDE_CONFIG_DIR=~/.claude-personal).
-  # Copy, don't symlink — the live account writes back to these files. Never
-  # clobber an existing one, and skip the repo-only README.
+  # Personal Claude Code account (CLAUDE_CONFIG_DIR=~/.claude-personal).
   if [[ -d "$DOTFILES_DIR/claude-personal" ]]; then
-    mkdir -p "$HOME/.claude-personal"
+    PERSONAL="$HOME/.claude-personal"
+    mkdir -p "$PERSONAL/skills"
+
+    # Seed config — copy, don't symlink: the live account writes back to these
+    # files. Never clobber an existing one; skip the repo-only README and the
+    # lsp seed (handled below as a dotfile).
     for cfg in "$DOTFILES_DIR"/claude-personal/*; do
       name="$(basename "$cfg")"
-      [[ "$name" == "README.md" ]] && continue
-      target="$HOME/.claude-personal/$name"
+      [[ "$name" == "README.md" || "$name" == "lsp.json" ]] && continue
+      target="$PERSONAL/$name"
       if [[ ! -e "$target" ]]; then
         cp "$cfg" "$target"
         echo "  $name -> ~/.claude-personal/ (seed)"
       fi
     done
+    if [[ -f "$DOTFILES_DIR/claude-personal/lsp.json" && ! -e "$PERSONAL/.lsp.json" ]]; then
+      cp "$DOTFILES_DIR/claude-personal/lsp.json" "$PERSONAL/.lsp.json"
+      echo "  .lsp.json -> ~/.claude-personal/ (seed)"
+    fi
+
+    # Dotfiles-managed scripts (statusline, tmux panes) — symlink, like ~/.claude.
+    for cfg in "$DOTFILES_DIR"/claude/*; do
+      name="$(basename "$cfg")"
+      target="$PERSONAL/$name"
+      [[ -e "$target" ]] || { ln -s "$cfg" "$target"; echo "  $name -> ~/.claude-personal/"; }
+    done
+
+    # Generic skills shipped in this repo (archive, tmux-pane, label).
+    for sk in "$DOTFILES_DIR"/skills/*; do
+      name="$(basename "$sk")"
+      target="$PERSONAL/skills/$name"
+      [[ -e "$target" ]] || { ln -s "$sk" "$target"; echo "  skill $name -> ~/.claude-personal/skills/"; }
+    done
+
+    # Generic skills from the humanpowers portable library, if cloned.
+    if [[ -d "$HOME/dev/humanpowers/skills" ]]; then
+      for sk in audit brainstorm debug deploy ground iterate triage verify; do
+        src="$HOME/dev/humanpowers/skills/$sk"
+        target="$PERSONAL/skills/$sk"
+        [[ -d "$src" && ! -e "$target" ]] && { ln -s "$src" "$target"; echo "  skill $sk -> ~/.claude-personal/skills/"; }
+      done
+    fi
   fi
 fi
 
