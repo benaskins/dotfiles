@@ -31,7 +31,7 @@ never committed.
 
 Beyond the seed config, `setup.sh` wires the personal account with only the
 **non-project-specific** skills and config — nothing from the work account
-(Slattery Grays / AI Studio) comes across:
+comes across:
 
 - **Config:** `settings.json` (opus, high effort, docker/ssh permissions,
   slop-guard + go-build + tmux-panes hooks, statusline, plugins) and `.lsp.json`
@@ -43,10 +43,8 @@ Beyond the seed config, `setup.sh` wires the personal account with only the
   `verify` from the [`humanpowers`](https://github.com/benaskins/humanpowers)
   portable skill library (if cloned at `~/dev/humanpowers`).
 
-Project-specific skills (`board`, `deploy-ai-studio`, `eod`, `grays-cookie`,
-`ground-ai-studio`, `handoff`, `intake`, `jira-ticket`, `meeting`, `memo`,
-`note`, `postman-sync`, `prd`, `publish`, `research`) stay on the work account
-only.
+Work project-specific skills are not linked here — they stay on the work
+account only.
 
 ## First-time login
 

@@ -2,8 +2,8 @@
 
 This is the **personal** Claude Code account, isolated from the work account via
 `CLAUDE_CONFIG_DIR=~/.claude-personal`. It has its own login, sessions, memory,
-and skills — nothing here is shared with the Slattery Grays / work account on the
-default `~/.claude`.
+and skills — nothing here is shared with the work account on the default
+`~/.claude`.
 
 ## Context
 
