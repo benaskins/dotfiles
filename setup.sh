@@ -87,6 +87,22 @@ if [[ "$MINIMAL" == false ]]; then
       fi
     done
   fi
+
+  # Seed the personal Claude Code account (CLAUDE_CONFIG_DIR=~/.claude-personal).
+  # Copy, don't symlink — the live account writes back to these files. Never
+  # clobber an existing one, and skip the repo-only README.
+  if [[ -d "$DOTFILES_DIR/claude-personal" ]]; then
+    mkdir -p "$HOME/.claude-personal"
+    for cfg in "$DOTFILES_DIR"/claude-personal/*; do
+      name="$(basename "$cfg")"
+      [[ "$name" == "README.md" ]] && continue
+      target="$HOME/.claude-personal/$name"
+      if [[ ! -e "$target" ]]; then
+        cp "$cfg" "$target"
+        echo "  $name -> ~/.claude-personal/ (seed)"
+      fi
+    done
+  fi
 fi
 
 for file in "${FILES[@]}"; do

@@ -1,0 +1,10 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "model": "opus",
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true,
+  "preferredNotifChannel": "terminal_bell"
+}

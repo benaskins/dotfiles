@@ -1,7 +1,15 @@
 # ~/.aliases
 
-# Claude
+# Claude (work account — default ~/.claude)
 alias claude="claude --dangerously-skip-permissions"
+
+# Claude personal account — isolated config dir, separate login/sessions/memory.
+# `command` bypasses the `claude` alias; the env var is scoped to this invocation.
+claude-personal() {
+  local dir="$HOME/.claude-personal"
+  mkdir -p "$dir"
+  CLAUDE_CONFIG_DIR="$dir" command claude --dangerously-skip-permissions "$@"
+}
 
 # Git
 alias gs="git status"
