@@ -53,6 +53,9 @@ chrome() {
   open -na "Google Chrome" --args --profile-directory="$profile" "$@"
 }
 
+# Per-profile shortcuts: <name> [url ...]
+alias auctions='chrome "Auctions"'  # baskins@slatteryauctions.com.au
+
 # FortiVPN: vpn up | vpn down
 vpn() {
   case "$1" in
