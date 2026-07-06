@@ -14,8 +14,19 @@
 
 set -euo pipefail
 
+# SessionStart fires on startup | resume | clear | compact. On compact the
+# session already has its panes and the user's chosen layout; re-running would
+# spawn duplicates in whatever window is focused. Read the source off stdin and
+# no-op for compaction.
+INPUT="$(cat)"
+SOURCE="$(printf '%s' "$INPUT" | sed -n 's/.*"source"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')"
+if [[ "$SOURCE" == "compact" ]]; then
+  echo '{}'
+  exit 0
+fi
+
 # Not in tmux? Nothing to do.
-if [ -z "${TMUX:-}" ] || [ -z "${TMUX_PANE:-}" ]; then
+if [[ -z "${TMUX:-}" ]] || [[ -z "${TMUX_PANE:-}" ]]; then
   echo '{}'
   exit 0
 fi
