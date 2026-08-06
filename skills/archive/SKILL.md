@@ -29,6 +29,16 @@ the same way every time:
 
 Pass a second argument to search somewhere other than the repo's parent.
 
+It exits non-zero when the repo holds work a move would bury, so it can gate the
+move itself:
+
+```
+<base directory>/check.sh ~/dev/REPO && mv ~/dev/REPO ~/dev/archive/REPO
+```
+
+The consumer list never affects the exit status. A name match is a candidate, and
+no script can tell a live import from a mention in an old design doc.
+
 ## 2. Read the consumers
 
 A name match is a candidate, not a dependency. The script says so and does not

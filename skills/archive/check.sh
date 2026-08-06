@@ -7,6 +7,10 @@
 #
 # Usage: check.sh <path-to-repo> [search-root]
 #   search-root defaults to the parent of <path-to-repo>, which is normally ~/dev
+#
+# Exits non-zero when the repo holds work a move would bury, so it can gate the
+# move: `check.sh ~/dev/REPO && mv ~/dev/REPO ~/dev/archive/REPO`. The consumer
+# list never affects the status; reading it is the caller's job.
 set -euo pipefail
 
 target="${1:?usage: check.sh <path-to-repo> [search-root]}"
@@ -112,12 +116,19 @@ fi
 
 # --- verdict ------------------------------------------------------------------
 
+# The verdict is the exit status as well as the text, so `check.sh REPO && mv ...`
+# is a real guard rather than a note the caller can read past.
+#
+# Only unsaved work sets it. The consumer list is advisory by design: a name match
+# is a candidate, and a script cannot tell a live import from a mention in an old
+# design doc. Blocking on it would train the caller to ignore the block.
 echo
 echo "== VERDICT"
 if [[ "$blockers" -eq 0 ]]; then
     echo "Nothing unsaved. Whether the consumers above matter is still a judgement."
-else
-    echo "$blockers reason(s) not to move this yet, listed above."
-    echo "An archive is a move, so this is recoverable, but the point of the check"
-    echo "is to not have to recover."
+    exit 0
 fi
+echo "$blockers reason(s) not to move this yet, listed above."
+echo "An archive is a move, so this is recoverable, but the point of the check is"
+echo "to not have to recover."
+exit 1
