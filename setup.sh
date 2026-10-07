@@ -117,7 +117,7 @@ if [[ "$MINIMAL" == false ]]; then
       [[ -e "$target" ]] || { ln -s "$cfg" "$target"; echo "  $name -> ~/.claude-personal/"; }
     done
 
-    # Generic skills shipped in this repo (archive, tmux-pane, label).
+    # Generic skills shipped in this repo.
     for sk in "$DOTFILES_DIR"/skills/*; do
       name="$(basename "$sk")"
       target="$PERSONAL/skills/$name"
