@@ -38,21 +38,24 @@ WORKBENCH_FILE="/tmp/claude-tmux-pane-${TAG}"
 VIEWER_FILE="/tmp/claude-viewer-pane-${TAG}"
 
 find_pane_by_title() {
-  tmux list-panes -F '#{pane_id} #{pane_title}' 2>/dev/null \
+  tmux list-panes -t "$TMUX_PANE" -F '#{pane_id} #{pane_title}' 2>/dev/null \
     | awk -v t="$1" '$2 == t {print $1; exit}'
 }
 
 ensure_pane_alive() {
   local id="$1"
-  [ -n "$id" ] && tmux list-panes -F '#{pane_id}' 2>/dev/null | grep -qx "$id"
+  [[ -n "$id" ]] && tmux list-panes -t "$TMUX_PANE" -F '#{pane_id}' 2>/dev/null | grep -qx "$id"
 }
 
+# Every tmux call targets $TMUX_PANE: without -t, tmux acts on the window the
+# client is focused on, which is not this one when a supervisor launches sessions
+# into background windows.
 # Reuse if a previous session in this window left them; otherwise re-create.
 workbench=$(find_pane_by_title "$WORKBENCH_TITLE" || true)
 viewer=$(find_pane_by_title "$VIEWER_TITLE" || true)
 
 if ! ensure_pane_alive "$workbench"; then
-  workbench=$(tmux split-window -v -d -p 40 -P -F '#{pane_id}')
+  workbench=$(tmux split-window -v -d -t "$TMUX_PANE" -p 40 -P -F '#{pane_id}')
   tmux select-pane -t "$workbench" -T "$WORKBENCH_TITLE"
   tmux send-keys -t "$workbench" "clear; echo \"${WORKBENCH_TITLE} — ready\"" Enter
 fi
